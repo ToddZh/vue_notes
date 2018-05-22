@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>lntroduce</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        var v;
+        var vv;
+        window.onload = function () {
+            v = new Vue({
+                el: '#app',//选择器
+                data: {
+                    msg: 'zhutong',
+                    msg2: '页面加载于 ' + new Date().toLocaleString()
+                }
+            });
+            vv = new Vue({
+                el: '.box',
+                data: {
+                    msg:'welcome vue',
+                    msg2:12,
+                    msg3:true,
+                    arr:['apple','banana','orange','pear'],
+                    json:{a:'apple',b:'banana'}
+                }
+            });
+        }
+    </script>
+
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="msg">
+        <input type="text" v-model="msg">
+        <br>
+        {{msg}}
+    </div>
+    <div class="box">
+        <input type="text" v-model="msg">
+        <br>
+        {{msg}}
+        <br>
+        {{msg2}}
+        <br>
+        {{msg3}}
+    </div>
+</body>
+</html>
+
+
