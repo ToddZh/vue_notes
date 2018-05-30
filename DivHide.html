@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DivHide</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        var v;
+        window.onload = function () {
+            v = new Vue({
+                el: '#hide',
+                data: {
+                    div: true
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <div id="hide">
+        <div style="width:100px; height: 100px; background: red" v-show="div">
+        </div>
+        <!--v-show控制div的显示隐藏-->
+        <input type="button" value="按钮" v-on:click="div=false">
+    </div>
+</body>
+</html>
