@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Events</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        window.onload=function () {
+            new Vue({
+                el:"#box",
+                data:{
+
+                },
+                methods:{
+                    show:function (a,b) {
+                        alert(a.clientX);
+                        alert(b.clientX);
+                    },
+                    show1:function(ev){
+                      alert(1);
+                      ev.preventDefault();
+                    },
+                    show2:function(ev) {
+                        alert(ev.keyCode);
+                    },
+                    show3:function(ev) {
+                        // alert(ev.keyCode);
+                        if (ev.keyCode == 13){//回车
+                            alert("回车");
+                        }
+                    },
+                    show4:function(ev) {
+                        alert("回车");
+                    },
+                    bubble1:function () {
+                        alert(1);
+                    },
+                    bubble2:function () {
+                        alert(2);
+                    }
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <div id="box">
+        <input type="button" value="按钮1" @click="show($event,12)">
+        <!--@是 v-on:的简写-->
+        <div @click="bubble2()">
+            <input type="button" value="按钮2" @click.stop="bubble1()">
+        </div>
+        <!--阻止冒泡  1.cancelBubble 2.@click.stop-->
+        <input type="button" value="按钮3" @contextmenu.prevent="show($event)">
+        <!--contextmenu右键触发函数，但是会出现菜单。使用ev.preventDefault()阻止默认事件发生(菜单)-->
+        <!--vue 原生阻止默认事件(行为)方法  @contextmenu.prevent="show($event)"-->
+        <input type="text" @keydown="show2($event)">
+        <input type="text" @keyup="show2($event)">
+        <hr>
+        <input type="text" @keydown="show3($event)">
+        <input type="text" @keydown.13="show4($event)"><!--键值匹配-->
+        <input type="text" @keydown.enter="show4($event)"><!--键名匹配-->
+        <!--以上等价 都是在按下回车时打印回车-->
+        <input type="text" @keydown.up="show2($event)"><!--键名匹配-->
+
+    </div>
+</body>
+</html>

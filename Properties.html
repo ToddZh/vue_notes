@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Properties</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <style>
+        .red{
+            color:red;
+        }
+        .blue{
+            background: dodgerblue;
+        }
+        .yellow{
+            color: yellow;
+        }
+    </style>
+    <script>
+        window.onload=function () {
+            new Vue({
+                el:"#box",
+                data:{
+                    google:'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png',
+                    width:'200px',
+                    title:'这是一张美丽的图片',
+                    red:'red',
+                    b:'blue',
+                    x:true,
+                    y:true,
+                    z:true,
+                    json:{
+                        red:true,
+                        blue:false
+                    },
+                    c:{
+                        color:'red',
+                        backgroundColor:'blue',
+                    },
+                    d:{backgroundColor:"black"}
+
+
+                },
+                methods: {
+                    show: function () {
+
+                    }
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <div id="box">
+        <!--<img v-bind:src="google">-->
+        <!--v-bind 用于绑定DOM属性  https://cn.vuejs.org/v2/api/#v-bind-->
+        <img :src="google" :width="width" :title="title">
+        <!--v-bind简写为:-->
+
+        <hr>
+        <!--属性中class和style比较特殊-->
+        <strong :class="[red,b]">hello</strong>
+        <!--其中red,b是vue data中的数据;vue 自动匹配style中的.red -->
+
+        <strong :class="{red:x,blue:y,yellow:z}">hello</strong>
+        <!--class 中放入 json 结构,red，blue 为css style，xyz是vue中的数据，也可直接放ture fasle-->
+
+        <strong :class="json">hello</strong>
+        <!--也可以直接将class绑定json格式数据,json为vue data中数据-->
+        <hr>
+
+        <!--style 绑定方法类似 class-->
+        <strong :style="[c]">文字</strong>
+        <!--[]list可以绑定多个属性 []中是绑定的style属性,即绑定vue中json格式css-->
+        <strong :style="[c,d]">文字</strong>
+        <!--复合样式一定要采取驼峰命名法,例子backgroundColor-->
+        <strong :style="c">文字</strong>
+        <!--也可以只绑定一个json-->
+    </div>
+</body>
+</html>
